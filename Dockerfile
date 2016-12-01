@@ -10,7 +10,7 @@ ENTRYPOINT ["/usr/bin/dumb-init"]
 
 # Install Docker
 RUN \
-  && apt-get update \
+  apt-get update \
   && apt-get install -qy --auto-remove curl python3 git \
   && (curl -s https://bootstrap.pypa.io/get-pip.py | python3) \
   && (curl -fsSL https://get.docker.com/ | sh) \
