@@ -1,0 +1,4 @@
+*.swp
+*.bak
+docker-compose.yml
+*.md
