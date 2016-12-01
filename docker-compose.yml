@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  runner:
+    build: .
+    image: gitlab-ci
+    restart: always
+    environment:
+      RUNNER_NAME: my-runner
+      REGISTRATION_TOKEN: TOKEN_FROM_GITLAB
+      RUNNER_SHELL: bash
+      RUNNER_EXECUTOR: shell
+      RUNNER_TAG_LIST: docker
