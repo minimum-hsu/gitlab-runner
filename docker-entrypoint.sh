@@ -21,6 +21,9 @@ if [[ -e /etc/gitlab-runner/config.toml ]] ; then
     echo TOKEN=$TOKEN
     trap "/entrypoint unregister --url $URL --token $TOKEN ; exit" SIGINT SIGTERM SIGKILL
 
+    # Start docker service
+    service docker start
+
     # Start runner
     /entrypoint run --working-directory=/home/gitlab-runner
 fi
