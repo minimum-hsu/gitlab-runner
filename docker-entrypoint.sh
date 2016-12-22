@@ -2,6 +2,9 @@
 
 URL=https://gitlab.com/ci
 
+# Start docker service
+service docker start
+
 # Check config file
 if [[ -e /etc/gitlab-runner/config.toml ]] ; then
     # Check config is available
@@ -20,9 +23,6 @@ if [[ -e /etc/gitlab-runner/config.toml ]] ; then
     TOKEN=$(gitlab-runner list 2>&1 | grep -o "Token.*" | awk -F' ' '{ print $1}' | awk -F'=' '{ print $2}')
     echo TOKEN=$TOKEN
     trap "/entrypoint unregister --url $URL --token $TOKEN ; exit" SIGINT SIGTERM SIGKILL
-
-    # Start docker service
-    service docker start
 
     # Start runner
     /entrypoint run --working-directory=/home/gitlab-runner
